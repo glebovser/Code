@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Base Site Moscow</string>
+    <string name="site">  № БС</string>
+    <string name="address">  Адрес </string>
+    <string name="powered_by">Powered by EngineeringForYou</string>
+    <string name="title">Учетные карточки БС</string>
+    <string name="search">ПОИСК</string>
+    <string name="Check">Помотреть на карте</string>
+    <string name="title_activity_maps">Карта </string>
+    <string name="searchHere">Искать БС рядом со мной</string>
+    <string name="nearestBS">ближайшие БС</string>
+    <string-array name="columns">
+        <item>"SITE"</item>
+        <item>"Addres"</item>
+        <item>"Object"</item>
+        <item>"GPS_Latitude"</item>
+        <item>"GPS_Longitude"</item>
+    </string-array>
+
+    <string-array name="columnsChoice">
+        <item>"SITE"</item>
+        <item>"Addres"</item>
+    </string-array>
+
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_map2">MapActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_main3">Main3Activity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps2">Map</string>
+    <string name="radius">Радиус</string>
+    <string name="operarators">Операторы</string>
+    <string name="maps">Карта</string>
+    <string name="ok">OK</string>
+    <string name="choiceBs">Выберите БС:</string>
+</resources>
