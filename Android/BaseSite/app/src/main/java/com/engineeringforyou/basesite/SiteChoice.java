@@ -25,7 +25,7 @@ public class SiteChoice extends Activity {
     String[] param1,param2,id;
     ListView listView;
 
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.site_choice);
         Bundle extras = getIntent().getExtras();
@@ -88,25 +88,5 @@ public class SiteChoice extends Activity {
                 startActivity(intent);
             }
         });
-    }
-
-    public void onClick2(View view) {
-        Log.v("aaa", "onClick2");
-        Intent intent = new Intent(this, MapsActivity.class);
-        intent.putExtra("lat", lat);
-        intent.putExtra("lng", lng);
-        intent.putExtra("site", siteNumber);
-        switch (view.getId()) {
-            case R.id.btnSearchNear:
-                Log.v("aaa", "btnSearchNear  MAP_BS_SITE");
-                intent.putExtra("next", MapsActivity.MAP_BS_SITE);
-                break;
-            case R.id.button:
-                Log.v("aaa", "button");
-                intent.putExtra("next", MapsActivity.MAP_BS_ONE);
-                Log.v("aaa", "MAP_BS_ONE ++++++ = " + siteNumber);
-                break;
-        }
-        startActivity(intent);
     }
 }

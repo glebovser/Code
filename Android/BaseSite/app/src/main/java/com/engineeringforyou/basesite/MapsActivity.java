@@ -33,20 +33,20 @@ import static android.location.LocationManager.PASSIVE_PROVIDER;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapLongClickListener {
 
-    public static final int MAP_BS_HERE = 1;
-    public static final int MAP_BS_SITE = 2;
-    public static final int MAP_BS_ONE = 3;
+    static final int MAP_BS_HERE = 1;
+    static final int MAP_BS_SITE = 2;
+    static final int MAP_BS_ONE = 3;
+    static float radius = 3; // ралиус "квадрата" в километрах
     private final float SCALE_BASIC = 15;
     private GoogleMap mMap;
     double lat, lng;
     String siteNumber;
     private UiSettings mUiSettings;
     int nextStep;
-    public static float radius = 3; // ралиус "квадрата" в километрах
     private boolean mLocationPermissionGranted;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    public static final String APP_PREFERENCES = "mysettings";
-    public static final String APP_PREFERENCES_COUNTER = "radius";
+    private static final String APP_PREFERENCES = "mysettings";
+    private static final String APP_PREFERENCES_COUNTER = "radius";
     private SharedPreferences mSettings;
 
     @Override
@@ -81,10 +81,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 new DialogRadius().show(getFragmentManager(), "dialog");
 //Подождать заершения диалога
 //                mMap.clear();
-//                Step();
+//                fillMap();
                 return true;
             case R.id.operators:
-                Toast.makeText(this, "Пока не реализовано", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Пока не реализовано, но Алексей уже работает над этим", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -121,10 +121,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (mLocationPermissionGranted) {
             mMap.setMyLocationEnabled(true);
         }
-        Step();
+        fillMap();
     }
 
-    private void Step() {
+    private void fillMap() {
         switch (nextStep) {
             case MAP_BS_HERE:
                 Location location = null;
@@ -201,8 +201,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 userCursor.getDouble(userCursor.getColumnIndex("GPS_Latitude")),
                                 userCursor.getDouble(userCursor.getColumnIndex("GPS_Longitude")))).
                         title(userCursor.getString(userCursor.getColumnIndex("SITE"))).
-                                alpha(0.5f).
-                                icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                        alpha(0.5f).
+                        icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
             }
         }
         userCursor.close();
@@ -226,7 +226,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 siteSearch(marker.getTitle(), 1));
     }
 
-    public void siteData(Cursor cursor) {
+    private void siteData(Cursor cursor) {
         if (cursor == null) {
             Toast.makeText(this, "Ошибка", Toast.LENGTH_SHORT).show();
             Log.v("aaa", "Ошибка в Курсоре ");
@@ -254,7 +254,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    public void toSiteInfo(Cursor cursor) {
+    private void toSiteInfo(Cursor cursor) {
 
         if (cursor == null) Log.v("aaa", "NULL -1");
         cursor.moveToFirst();

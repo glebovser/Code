@@ -18,14 +18,14 @@ import java.util.Arrays;
  * Created by Сергей on 30.09.2017.
  */
 
-public class DBHelper extends SQLiteOpenHelper {
+  class DBHelper extends SQLiteOpenHelper {
     private static String DB_PATH; // полный путь к базе данных
     private static String DB_NAME1 = "MTS_DataBaseFile.db";
     static String DB_NAME = "MTS_Site_Base";
     private static final int SCHEMA = 1; // версия базы данных
     private Context myContext;
 
-    public DBHelper(Context context) {
+    DBHelper(Context context) {
         super(context, DB_NAME1, null, SCHEMA);
         this.myContext = context;
         DB_PATH = context.getFilesDir().getPath() + DB_NAME1;
@@ -43,7 +43,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Log.v("aaa", "Попытка обновить БД");
     }
 
-    public Cursor siteSearch(String siteQuery, int mode) {
+    Cursor siteSearch(String siteQuery, int mode) {
         DBHelper db = null;
         Cursor userCursor = null;
         SQLiteDatabase sqld;
@@ -150,7 +150,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public SQLiteDatabase open() throws SQLException {
+    SQLiteDatabase open() throws SQLException {
         return SQLiteDatabase.openDatabase(DB_PATH, null, SQLiteDatabase.OPEN_READONLY);
     }
 }

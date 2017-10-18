@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText siteView1, siteView2;
-    String siteNumber, siteAddress;
+    private EditText siteView1, siteView2;
+    private String siteNumber, siteAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void siteData(Cursor cursor) {
+    private void siteData(Cursor cursor) {
         if (cursor == null) {
             Toast.makeText(this, "Ошибка", Toast.LENGTH_SHORT).show();
             Log.v("aaa", "Ошибка в Курсоре ");
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         Log.v("aaa", "Конец siteData");
     }
 
-    public void toSiteInfo(Cursor cursor) {
+    private void toSiteInfo(Cursor cursor) {
         if (cursor == null) Log.v("aaa", "NULL -1");
         cursor.moveToFirst();
         double lat, lng;
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void toSiteChoice(Cursor cursor, int count) {
+    private void toSiteChoice(Cursor cursor, int count) {
         if (cursor == null) Log.v("aaa", "NULL-10");
         cursor.moveToFirst();
         String[] headers = getResources().getStringArray(R.array.columnsChoice);
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         String[] id = new String[count];
         Log.v("aaa", "Choice.headers.length " + headers.length);
         for (int i = 0; i < count; i++) {
-            param1[i] = cursor.getString(cursor.getColumnIndex(headers[0]));
+            param1[i] = cursor.getString(cursor.getColumnIndex(headers[0]))+ " (МТС)";
             param2[i] = cursor.getString(cursor.getColumnIndex(headers[1]));
             id[i] = cursor.getString(cursor.getColumnIndex("_id"));
             Log.v("aaa", i + "id[i] " + id[i]);
